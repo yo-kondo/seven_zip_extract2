@@ -1,4 +1,6 @@
+using System.IO;
 using NUnit.Framework;
+using SevenZipExtract;
 
 namespace SevenZipExtractTests
 {
@@ -9,10 +11,64 @@ namespace SevenZipExtractTests
         {
         }
 
+        /// <summary>
+        /// 拡張子 : .7z
+        /// パスワード : なし
+        /// </summary>
         [Test]
-        public void Test1()
+        public void Test001()
         {
-            Assert.Pass();
+            const string workPath = "TestData/Test001/";
+            var args = new[] {workPath + "test.7z"};
+            var result = Program.Main(args);
+
+            Assert.That(result, Is.EqualTo(0));
+            Assert.That(File.Exists(workPath + "test.txt"), Is.True);
+
+            // 元に戻す
+            File.Delete(workPath + "test.txt");
+        }
+
+        /// <summary>
+        /// 拡張子 : .zi_
+        /// パスワード : password1
+        /// </summary>
+        [Test]
+        public void Test002()
+        {
+            const string workPath = "TestData/Test002/";
+            var args = new[] {workPath + "test.zi_"};
+            var result = Program.Main(args);
+
+            Assert.That(result, Is.EqualTo(0));
+            Assert.That(Directory.Exists(workPath + "directory"), Is.True);
+            Assert.That(File.Exists(workPath + "directory/test1.txt"), Is.True);
+            Assert.That(File.Exists(workPath + "directory/test2.txt"), Is.True);
+
+            // 元に戻す
+            Directory.Delete(workPath + "directory", true);
+            File.Move(workPath + "test.zip", workPath + "test.zi_");
+        }
+
+        /// <summary>
+        /// 拡張子 : .ex_
+        /// パスワード : password2
+        /// </summary>
+        [Test]
+        public void Test003()
+        {
+            const string workPath = "TestData/Test003/";
+            var args = new[] {workPath + "test.ex_"};
+            var result = Program.Main(args);
+
+            Assert.That(result, Is.EqualTo(0));
+            Assert.That(Directory.Exists(workPath + "directory"), Is.True);
+            Assert.That(File.Exists(workPath + "directory/test1.txt"), Is.True);
+            Assert.That(File.Exists(workPath + "directory/test2.txt"), Is.True);
+
+            // 元に戻す
+            Directory.Delete(workPath + "directory", true);
+            File.Move(workPath + "test.exe", workPath + "test.ex_");
         }
     }
 }

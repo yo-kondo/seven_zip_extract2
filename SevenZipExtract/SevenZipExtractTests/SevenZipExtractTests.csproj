@@ -12,4 +12,24 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SevenZipExtract\SevenZipExtract.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="TestData" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="TestData\Test001\test.7z">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="TestData\Test002\test.zi_">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="TestData\Test003\test.ex_">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
