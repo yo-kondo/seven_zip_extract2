@@ -8,21 +8,35 @@ namespace SevenZipExtract
 {
     internal static class Program
     {
-        internal static int Main(string[] args)
+        internal static void Main(string[] args)
+        {
+            try
+            {
+                Execute(args);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        /// <summary>
+        /// メイン処理
+        /// </summary>
+        /// <param name="args">コマンドライン引数</param>
+        internal static void Execute(IReadOnlyList<string> args)
         {
             // コマンドライン引数
-            if (args.Length != 1)
+            if (args.Count != 1)
             {
-                Console.WriteLine("コマンドライン引数に、ファイル名を指定して下さい。");
-                return 1;
+                throw new Exception("コマンドライン引数に、ファイル名を指定して下さい。");
             }
 
             // 解凍対象のファイル（フルパス）
             var targetFile = args[0];
             if (!File.Exists(targetFile))
             {
-                Console.WriteLine("解凍対象のファイルが存在しません。");
-                return 2;
+                throw new Exception("解凍対象のファイルが存在しません。");
             }
 
             // 設定ファイル
@@ -31,8 +45,7 @@ namespace SevenZipExtract
 
             if (!File.Exists(settings.SevenZipPath))
             {
-                Console.WriteLine("7zipのexeが存在しません。");
-                return 3;
+                throw new Exception("7zipのexeが存在しません。");
             }
 
             // 拡張子を変更したファイル名
@@ -65,22 +78,20 @@ namespace SevenZipExtract
                 var process = Process.Start(proInfo);
                 if (process == null)
                 {
-                    Console.WriteLine("7zipのexe実行に失敗しました。");
-                    return 4;
+                    throw new Exception("7zipのexe実行に失敗しました。");
                 }
 
-                // Console.WriteLine(process.StandardOutput.ReadToEnd());
+                // throw new Exception(process.StandardOutput.ReadToEnd());
 
                 process.WaitForExit();
                 if (process.ExitCode == 0)
                 {
                     Console.WriteLine("解凍に成功しました。");
-                    return 0;
+                    return;
                 }
             }
 
-            Console.WriteLine("解凍に失敗しました。パスワードが間違っている可能性があります。");
-            return 0;
+            throw new Exception("解凍に失敗しました。パスワードが間違っている可能性があります。");
         }
 
         /// <summary>
@@ -108,6 +119,6 @@ namespace SevenZipExtract
         /// 解凍パスワード（複数可能）
         /// </summary>
         [JsonProperty("extractPasswords")]
-        public List<string> ExtractPasswords { get; set; } = new List<string>();
+        public List<string> ExtractPasswords { get; set; } = new();
     }
 }

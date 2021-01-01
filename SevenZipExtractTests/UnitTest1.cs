@@ -20,9 +20,8 @@ namespace SevenZipExtractTests
         {
             const string workPath = "TestData/Test001/";
             var args = new[] {workPath + "test.7z"};
-            var result = Program.Main(args);
+            Program.Execute(args);
 
-            Assert.That(result, Is.EqualTo(0));
             Assert.That(File.Exists(workPath + "test.txt"), Is.True);
 
             // 元に戻す
@@ -38,9 +37,8 @@ namespace SevenZipExtractTests
         {
             const string workPath = "TestData/Test002/";
             var args = new[] {workPath + "test.zi_"};
-            var result = Program.Main(args);
+            Program.Main(args);
 
-            Assert.That(result, Is.EqualTo(0));
             Assert.That(Directory.Exists(workPath + "directory"), Is.True);
             Assert.That(File.Exists(workPath + "directory/test1.txt"), Is.True);
             Assert.That(File.Exists(workPath + "directory/test2.txt"), Is.True);
@@ -59,9 +57,8 @@ namespace SevenZipExtractTests
         {
             const string workPath = "TestData/Test003/";
             var args = new[] {workPath + "test.ex_"};
-            var result = Program.Main(args);
+            Program.Main(args);
 
-            Assert.That(result, Is.EqualTo(0));
             Assert.That(Directory.Exists(workPath + "directory"), Is.True);
             Assert.That(File.Exists(workPath + "directory/test1.txt"), Is.True);
             Assert.That(File.Exists(workPath + "directory/test2.txt"), Is.True);
