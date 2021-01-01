@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenZipExtract", "SevenZipExtract\SevenZipExtract.csproj", "{EF1475FE-3840-465E-86FA-5392AC4DA447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenZipExtractTests", "SevenZipExtractTests\SevenZipExtractTests.csproj", "{4F8D2CCB-F043-4485-A5C2-8352E127850F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF1475FE-3840-465E-86FA-5392AC4DA447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1475FE-3840-465E-86FA-5392AC4DA447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1475FE-3840-465E-86FA-5392AC4DA447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1475FE-3840-465E-86FA-5392AC4DA447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8D2CCB-F043-4485-A5C2-8352E127850F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8D2CCB-F043-4485-A5C2-8352E127850F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8D2CCB-F043-4485-A5C2-8352E127850F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8D2CCB-F043-4485-A5C2-8352E127850F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
