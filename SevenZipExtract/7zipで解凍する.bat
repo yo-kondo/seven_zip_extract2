@@ -7,4 +7,5 @@ REM カレントディレクトリをbatファイルのディレクトリに変更
 cd /d %~dp0
 
 SevenZipExtract.exe %1
+echo 処理結果 = %ERRORLEVEL%
 pause
